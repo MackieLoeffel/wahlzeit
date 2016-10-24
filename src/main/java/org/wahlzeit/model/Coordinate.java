@@ -12,23 +12,18 @@ public class Coordinate {
      * @param longitude in degrees
      */
     public Coordinate(double latitude, double longitude) {
-        this.latitude = normalizeDegrees(latitude);
-        this.longitude = normalizeDegrees(longitude);
-    }
-
-    private double normalizeDegrees(double degree) {
-        while(degree < 0) {
-            degree += 360;
-        }
-        return degree % 360;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public double getDistance(Coordinate other) {
         // see https://en.wikipedia.org/wiki/Great-circle_distance
-        return EARTH_RADIUS * Math.acos(
-                Math.sin(Math.toRadians(latitude)) * Math.sin(Math.toRadians(other.latitude))
-                + Math.cos(Math.toRadians(latitude)) * Math.cos(Math.toRadians(other.latitude))
-                        * Math.cos(Math.toRadians(other.longitude - longitude)));
+        // the Math.min(1, ...) is needed, because the calculation has precision problems
+        // and this function would return NaN, if the two coordinates are very close to another
+        return EARTH_RADIUS * Math.acos(Math.min(1,
+                Math.sin(getLatitudeRadians()) * Math.sin(other.getLatitudeRadians())
+                + Math.cos(getLatitudeRadians()) * Math.cos(other.getLatitudeRadians())
+                        * Math.cos(getLongitudeRadians() - other.getLongitudeRadians())));
     }
 
     public double getLatitude() {
@@ -38,4 +33,8 @@ public class Coordinate {
     public double getLongitude() {
         return longitude;
     }
+
+    public double getLatitudeRadians() { return Math.toRadians(getLatitude());}
+
+    public double getLongitudeRadians() { return Math.toRadians(getLongitude()); }
 }
