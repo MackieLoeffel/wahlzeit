@@ -19,40 +19,29 @@
  */
 package org.wahlzeit.services.mailing;
 
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
+import org.wahlzeit.main.ServiceMain;
 import org.wahlzeit.services.EmailAddress;
 
-/**
- *
- */
-public class EmailServiceTest extends TestCase {
+import static org.junit.Assert.*;
 
-	/**
-	 *
-	 */
+public class EmailServiceTest {
+
 	protected EmailService emailService = null;
 
-	/**
-	 *
-	 */
 	protected EmailAddress validAddress;
 
-
-	/**
-	 *
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	@Before
+	public void setUp() throws Exception {
+		ServiceMain.getInstance().setIsInProduction(false);
 
 		emailService = EmailServiceManager.getDefaultService();
 
 		validAddress = EmailAddress.getFromString("test@test.de");
 	}
 
-	/**
-	 *
-	 */
+	@Test
 	public void testSendInvalidEmail() {
 		try {
 			assertFalse(emailService.sendEmailIgnoreException(validAddress, null, "lol", "hi"));
@@ -63,9 +52,7 @@ public class EmailServiceTest extends TestCase {
 		}
 	}
 
-	/**
-	 *
-	 */
+	@Test
 	public void testSendValidEmail() {
 		try {
 			assertTrue(emailService.sendEmailIgnoreException(validAddress, validAddress, "hi", "test"));

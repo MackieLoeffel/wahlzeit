@@ -43,7 +43,7 @@ public class ServiceMain extends ModelMain {
 	/**
 	 *
 	 */
-	protected static ServiceMain instance = new ServiceMain();
+	protected static final ServiceMain instance = new ServiceMain();
 
 	/**
 	 *
@@ -85,6 +85,10 @@ public class ServiceMain extends ModelMain {
 		return instance.isInProduction;
 	}
 
+	public void setIsInProduction(boolean isInProduction) {
+		instance.isInProduction = isInProduction;
+	}
+
 	/**
 	 *
 	 */
@@ -118,7 +122,7 @@ public class ServiceMain extends ModelMain {
 	 *
 	 */
 	public void configureWebPartHandlers() {
-		WebPartHandler temp = null;
+		WebPartHandler temp;
 		WebPartHandlerManager manager = WebPartHandlerManager.getInstance();
 
 		// NullInfo and NullForm
