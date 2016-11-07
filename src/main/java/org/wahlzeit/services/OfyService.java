@@ -4,11 +4,11 @@ import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
 import org.wahlzeit.model.Administrator;
+import org.wahlzeit.model.ArchitecturePhoto;
 import org.wahlzeit.model.Client;
 import org.wahlzeit.model.Globals;
 import org.wahlzeit.model.Guest;
 import org.wahlzeit.model.Moderator;
-import org.wahlzeit.model.Photo;
 import org.wahlzeit.model.PhotoCase;
 import org.wahlzeit.model.Tag;
 import org.wahlzeit.model.User;
@@ -25,7 +25,7 @@ public class OfyService {
 	 * Register all entities at startup
 	 */
 	static {
-		factory().register(Photo.class);
+		factory().register(ArchitecturePhoto.class);
 		factory().register(Globals.class);
 		factory().register(Tag.class);
 		factory().register(User.class);
