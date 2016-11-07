@@ -23,6 +23,7 @@ package org.wahlzeit.model;
 import com.google.api.client.util.ArrayMap;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.images.Image;
+import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Ignore;
 import com.googlecode.objectify.annotation.Parent;
@@ -36,6 +37,7 @@ import java.util.Map;
 /**
  * A photo represents a user-provided (uploaded) photo.
  */
+@Entity
 public abstract class Photo extends DataObject {
 
 	/**
