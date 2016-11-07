@@ -30,20 +30,13 @@ import org.wahlzeit.services.Persistent;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
  * A photo manager provides access to and manages photos.
  */
-public abstract class PhotoManager extends ObjectManager {
+public abstract class PhotoManager<T extends Photo> extends ObjectManager {
 
 	private static final Logger log = Logger.getLogger(PhotoManager.class.getName());
 
@@ -54,10 +47,13 @@ public abstract class PhotoManager extends ObjectManager {
 
 	protected final PhotoFactory photoFactory;
 
+	protected final Class photoClass;
+
 	protected PhotoTagCollector photoTagCollector = null;
 
-	protected PhotoManager(PhotoFactory factory) {
+	protected PhotoManager(PhotoFactory factory, Class photoClass) {
 		photoFactory = factory;
+		this.photoClass = photoClass;
 		photoTagCollector = photoFactory.createPhotoTagCollector();
 	}
 
@@ -138,16 +134,16 @@ public abstract class PhotoManager extends ObjectManager {
 	 * Load all persisted photos. Executed when Wahlzeit is restarted.
 	 */
 	public void loadPhotos() {
-		Collection<ArchitecturePhoto> existingPhotos = ObjectifyService.run(new Work<Collection<ArchitecturePhoto>>() {
+		Collection<T> existingPhotos = ObjectifyService.run(new Work<Collection<T>>() {
 			@Override
-			public Collection<ArchitecturePhoto> run() {
-				Collection<ArchitecturePhoto> existingPhotos = new ArrayList<>();
-				readObjects(existingPhotos, ArchitecturePhoto.class);
+			public Collection<T> run() {
+				Collection<T> existingPhotos = new ArrayList<>();
+				readObjects(existingPhotos, photoClass);
 				return existingPhotos;
 			}
 		});
 
-		for (ArchitecturePhoto photo : existingPhotos) {
+		for (T photo : existingPhotos) {
 			if (!doHasPhoto(photo.getId())) {
 				log.config(LogBuilder.createSystemMessage().
 						addParameter("Load Photo with ID", photo.getIdAsString()).toString());
@@ -299,11 +295,11 @@ public abstract class PhotoManager extends ObjectManager {
 	/**
 	 *
 	 */
-	public Set<ArchitecturePhoto> findPhotosByOwner(String ownerName) {
-		Set<ArchitecturePhoto> result = new HashSet<>();
-		readObjects(result, ArchitecturePhoto.class, Photo.OWNER_ID, ownerName);
+	public Set<T> findPhotosByOwner(String ownerName) {
+		Set<T> result = new HashSet<>();
+		readObjects(result, photoClass, Photo.OWNER_ID, ownerName);
 
-		for (Iterator<ArchitecturePhoto> i = result.iterator(); i.hasNext(); ) {
+		for (Iterator<T> i = result.iterator(); i.hasNext(); ) {
 			doAddPhoto(i.next());
 		}
 
