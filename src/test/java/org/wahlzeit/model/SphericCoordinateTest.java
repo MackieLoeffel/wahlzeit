@@ -32,6 +32,66 @@ public class SphericCoordinateTest {
     }
 
     @Test
+    public void testToCartesianNorth() {
+        SphericCoordinate a = new SphericCoordinate(90, 0, SphericCoordinate.EARTH_RADIUS_KM);
+
+        CartesianCoordinate c = a.toCartesian();
+        assertEquals(0, c.getX(), 1);
+        assertEquals(0, c.getY(), 1);
+        assertEquals(SphericCoordinate.EARTH_RADIUS_KM, c.getZ(), 1);
+    }
+
+    @Test
+    public void testToCartesianSouth() {
+        SphericCoordinate a = new SphericCoordinate(-90, 0, SphericCoordinate.EARTH_RADIUS_KM);
+
+        CartesianCoordinate c = a.toCartesian();
+        assertEquals(0, c.getX(), 1);
+        assertEquals(0, c.getY(), 1);
+        assertEquals(-SphericCoordinate.EARTH_RADIUS_KM, c.getZ(), 1);
+    }
+
+    @Test
+    public void testToCartesianWest() {
+        SphericCoordinate a = new SphericCoordinate(0, -90, SphericCoordinate.EARTH_RADIUS_KM);
+
+        CartesianCoordinate c = a.toCartesian();
+        assertEquals(0, c.getX(), 1);
+        assertEquals(-SphericCoordinate.EARTH_RADIUS_KM, c.getY(), 1);
+        assertEquals(0, c.getZ(), 1);
+    }
+
+    @Test
+    public void testToCartesianEast() {
+        SphericCoordinate a = new SphericCoordinate(0, 90, SphericCoordinate.EARTH_RADIUS_KM);
+
+        CartesianCoordinate c = a.toCartesian();
+        assertEquals(0, c.getX(), 1);
+        assertEquals(SphericCoordinate.EARTH_RADIUS_KM, c.getY(), 1);
+        assertEquals(0, c.getZ(), 1);
+    }
+
+    @Test
+    public void testToCartesianFront() {
+        SphericCoordinate a = new SphericCoordinate(0, 0, SphericCoordinate.EARTH_RADIUS_KM);
+
+        CartesianCoordinate c = a.toCartesian();
+        assertEquals(SphericCoordinate.EARTH_RADIUS_KM, c.getX(), 1);
+        assertEquals(0, c.getY(), 1);
+        assertEquals(0, c.getZ(), 1);
+    }
+
+    @Test
+    public void testToCartesianBack() {
+        SphericCoordinate a = new SphericCoordinate(0, 180, SphericCoordinate.EARTH_RADIUS_KM);
+
+        CartesianCoordinate c = a.toCartesian();
+        assertEquals(-SphericCoordinate.EARTH_RADIUS_KM, c.getX(), 1);
+        assertEquals(0, c.getY(), 1);
+        assertEquals(0, c.getZ(), 1);
+    }
+
+    @Test
     public void testGetDistanceSamePoint() {
         SphericCoordinate a = new SphericCoordinate(12, 34, SphericCoordinate.EARTH_RADIUS_KM);
         SphericCoordinate b = new SphericCoordinate(12, 34, SphericCoordinate.EARTH_RADIUS_KM);
@@ -76,7 +136,7 @@ public class SphericCoordinateTest {
         SphericCoordinate a = new SphericCoordinate(0, 90, SphericCoordinate.EARTH_RADIUS_KM);
         SphericCoordinate b = new SphericCoordinate(0, -270, SphericCoordinate.EARTH_RADIUS_KM);
 
-        assertEquals(0, a.getDistance(b), 0);
+        assertEquals(0, a.getDistance(b), 1);
     }
 
     @Test
@@ -92,7 +152,7 @@ public class SphericCoordinateTest {
         SphericCoordinate a = new SphericCoordinate(0, 0, SphericCoordinate.EARTH_RADIUS_KM);
         SphericCoordinate b = new SphericCoordinate(-111, -222, SphericCoordinate.EARTH_RADIUS_KM);
 
-        assertEquals(8290, a.getDistance(b), 1);
+        assertEquals(7717, a.getDistance(b), 1);
     }
 
     @Test
@@ -100,6 +160,6 @@ public class SphericCoordinateTest {
         SphericCoordinate a = new SphericCoordinate(123, 0, SphericCoordinate.EARTH_RADIUS_KM);
         SphericCoordinate b = new SphericCoordinate(12, -222, SphericCoordinate.EARTH_RADIUS_KM);
 
-        assertEquals(6141, a.getDistance(b), 1);
+        assertEquals(5906, a.getDistance(b), 1);
     }
 }

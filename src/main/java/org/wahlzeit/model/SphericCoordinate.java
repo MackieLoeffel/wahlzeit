@@ -27,9 +27,9 @@ public class SphericCoordinate implements Coordinate {
     @Override
     public CartesianCoordinate toCartesian() {
         return new CartesianCoordinate(
-                radius * Math.sin(Math.PI + getLatitudeRadians()) * Math.cos(getLongitudeRadians()),
-                radius * Math.sin(Math.PI + getLatitudeRadians()) * Math.sin(getLongitudeRadians()),
-                radius * Math.cos(Math.PI + getLatitudeRadians()));
+                radius * Math.cos(getLatitudeRadians()) * Math.cos(getLongitudeRadians()),
+                radius * Math.cos(getLatitudeRadians()) * Math.sin(getLongitudeRadians()),
+                radius * Math.sin(getLatitudeRadians()));
     }
 
     public double getLatitude() {

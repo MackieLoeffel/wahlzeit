@@ -4,7 +4,7 @@ public class Location {
 
     private final Coordinate coordinate;
 
-    public Location(SphericCoordinate coordinate) {
+    public Location(Coordinate coordinate) {
         this.coordinate = coordinate;
     }
 

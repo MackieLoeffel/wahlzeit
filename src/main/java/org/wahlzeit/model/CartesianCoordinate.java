@@ -23,7 +23,6 @@ public class CartesianCoordinate implements Coordinate {
     }
 
     public double getDistance(CartesianCoordinate coordinate) {
-        System.out.println(this.toString() + " <=> " + coordinate.toString());
         double dx = getX() - coordinate.getX();
         double dy = getY() - coordinate.getY();
         double dz = getZ() - coordinate.getZ();
