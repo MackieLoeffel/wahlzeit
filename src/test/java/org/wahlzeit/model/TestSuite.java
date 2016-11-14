@@ -10,7 +10,7 @@ import org.wahlzeit.model.persistence.GcsAdapterTest;
 		DatastoreAdapterTest.class,
 		GcsAdapterTest.class,
 		AccessRightsTest.class,
-		CoordinateTest.class,
+		SphericCoordinateTest.class,
 		FlagReasonTest.class,
 		GenderTest.class,
 		GuestTest.class,
