@@ -3,9 +3,9 @@ package org.wahlzeit.model;
 public class SphericCoordinate implements Coordinate {
     public static final double EARTH_RADIUS_KM = 6371;
 
-    private final double latitude;
-    private final double longitude;
-    private final double radius;
+    private double latitude;
+    private double longitude;
+    private double radius;
 
     /**
      * Creates a new Coodinate from latitude and longitude in degrees

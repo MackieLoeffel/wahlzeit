@@ -1,9 +1,9 @@
 package org.wahlzeit.model;
 
 public class CartesianCoordinate implements Coordinate {
-    private final double x;
-    private final double y;
-    private final double z;
+    private double x;
+    private double y;
+    private double z;
 
     /**
      * Origin is middle of the Earth, all Parameters in km
