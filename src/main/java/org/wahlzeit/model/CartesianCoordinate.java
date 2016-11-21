@@ -1,6 +1,6 @@
 package org.wahlzeit.model;
 
-public class CartesianCoordinate implements Coordinate {
+public class CartesianCoordinate extends AbstractCoordinate {
     private double x;
     private double y;
     private double z;
@@ -15,18 +15,6 @@ public class CartesianCoordinate implements Coordinate {
         this.x = x;
         this.y = y;
         this.z = z;
-    }
-
-    @Override
-    public double getDistance(Coordinate coordinate) {
-        return getDistance(coordinate.toCartesian());
-    }
-
-    public double getDistance(CartesianCoordinate coordinate) {
-        double dx = getX() - coordinate.getX();
-        double dy = getY() - coordinate.getY();
-        double dz = getZ() - coordinate.getZ();
-        return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
 
     @Override

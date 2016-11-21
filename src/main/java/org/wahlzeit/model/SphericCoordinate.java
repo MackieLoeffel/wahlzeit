@@ -1,6 +1,6 @@
 package org.wahlzeit.model;
 
-public class SphericCoordinate implements Coordinate {
+public class SphericCoordinate extends AbstractCoordinate {
     public static final double EARTH_RADIUS_KM = 6371;
 
     private double latitude;
@@ -17,11 +17,6 @@ public class SphericCoordinate implements Coordinate {
         this.latitude = latitude;
         this.longitude = longitude;
         this.radius = radius;
-    }
-
-    @Override
-    public double getDistance(Coordinate coordinate) {
-        return toCartesian().getDistance(coordinate);
     }
 
     @Override

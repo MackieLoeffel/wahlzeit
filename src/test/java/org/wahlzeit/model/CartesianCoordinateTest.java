@@ -2,7 +2,7 @@ package org.wahlzeit.model;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class CartesianCoordinateTest {
 
@@ -71,5 +71,21 @@ public class CartesianCoordinateTest {
 		CartesianCoordinate b = new CartesianCoordinate(78, 910, 1112);
 
 		assertEquals(1373, a.getDistance(b), 1);
+	}
+
+	@Test
+	public void testIsEqual() {
+		CartesianCoordinate a = new CartesianCoordinate(1, 2, 3);
+		CartesianCoordinate b = new CartesianCoordinate(1, 2, 3);
+
+		assertTrue(a.isEqual(b));
+	}
+
+	@Test
+	public void testIsEqualFalse() {
+		CartesianCoordinate a = new CartesianCoordinate(1, 2, 3);
+		CartesianCoordinate b = new CartesianCoordinate(1, 2, 2.5);
+
+		assertFalse(a.isEqual(b));
 	}
 }

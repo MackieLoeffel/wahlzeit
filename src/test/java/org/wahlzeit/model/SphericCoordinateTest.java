@@ -2,7 +2,7 @@ package org.wahlzeit.model;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class SphericCoordinateTest {
 
@@ -161,5 +161,21 @@ public class SphericCoordinateTest {
         SphericCoordinate b = new SphericCoordinate(12, -222, SphericCoordinate.EARTH_RADIUS_KM);
 
         assertEquals(5906, a.getDistance(b), 1);
+    }
+
+    @Test
+    public void testIsEqual() {
+        SphericCoordinate a = new SphericCoordinate(-343, 348, SphericCoordinate.EARTH_RADIUS_KM);
+        SphericCoordinate b = new SphericCoordinate(377, -12, SphericCoordinate.EARTH_RADIUS_KM);
+
+        assertTrue(a.isEqual(b));
+    }
+
+    @Test
+    public void testIsEqualFalse() {
+        SphericCoordinate a = new SphericCoordinate(-343, 348, SphericCoordinate.EARTH_RADIUS_KM);
+        SphericCoordinate b = new SphericCoordinate(377, -13, SphericCoordinate.EARTH_RADIUS_KM);
+
+        assertFalse(a.isEqual(b));
     }
 }
