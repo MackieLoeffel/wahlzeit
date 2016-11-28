@@ -14,17 +14,22 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @param radius in km
      */
     public SphericCoordinate(double latitude, double longitude, double radius) {
+        checkRadius(radius);
         this.latitude = latitude;
         this.longitude = longitude;
         this.radius = radius;
     }
 
-    @Override
-    public CartesianCoordinate toCartesian() {
-        return new CartesianCoordinate(
-                radius * Math.cos(getLatitudeRadians()) * Math.cos(getLongitudeRadians()),
-                radius * Math.cos(getLatitudeRadians()) * Math.sin(getLongitudeRadians()),
-                radius * Math.sin(getLatitudeRadians()));
+    public double asCartesianX() {
+        return radius * Math.cos(getLatitudeRadians()) * Math.cos(getLongitudeRadians());
+    }
+
+    public double asCartesianY() {
+        return radius * Math.cos(getLatitudeRadians()) * Math.sin(getLongitudeRadians());
+    }
+
+    public double asCartesianZ() {
+        return radius * Math.sin(getLatitudeRadians());
     }
 
     public double getLatitude() {
@@ -39,4 +44,9 @@ public class SphericCoordinate extends AbstractCoordinate {
 
     public double getLongitudeRadians() { return Math.toRadians(getLongitude()); }
 
+    private void checkRadius(double radius) {
+        if (radius < 0) {
+            throw new IllegalArgumentException("radius must be positive, was " + radius);
+        }
+    }
 }

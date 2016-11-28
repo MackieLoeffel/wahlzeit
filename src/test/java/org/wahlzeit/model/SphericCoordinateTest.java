@@ -35,60 +35,54 @@ public class SphericCoordinateTest {
     public void testToCartesianNorth() {
         SphericCoordinate a = new SphericCoordinate(90, 0, SphericCoordinate.EARTH_RADIUS_KM);
 
-        CartesianCoordinate c = a.toCartesian();
-        assertEquals(0, c.getX(), 1);
-        assertEquals(0, c.getY(), 1);
-        assertEquals(SphericCoordinate.EARTH_RADIUS_KM, c.getZ(), 1);
+        assertEquals(0, a.asCartesianX(), 1);
+        assertEquals(0, a.asCartesianY(), 1);
+        assertEquals(SphericCoordinate.EARTH_RADIUS_KM, a.asCartesianZ(), 1);
     }
 
     @Test
     public void testToCartesianSouth() {
         SphericCoordinate a = new SphericCoordinate(-90, 0, SphericCoordinate.EARTH_RADIUS_KM);
 
-        CartesianCoordinate c = a.toCartesian();
-        assertEquals(0, c.getX(), 1);
-        assertEquals(0, c.getY(), 1);
-        assertEquals(-SphericCoordinate.EARTH_RADIUS_KM, c.getZ(), 1);
+        assertEquals(0, a.asCartesianX(), 1);
+        assertEquals(0, a.asCartesianY(), 1);
+        assertEquals(-SphericCoordinate.EARTH_RADIUS_KM, a.asCartesianZ(), 1);
     }
 
     @Test
     public void testToCartesianWest() {
         SphericCoordinate a = new SphericCoordinate(0, -90, SphericCoordinate.EARTH_RADIUS_KM);
 
-        CartesianCoordinate c = a.toCartesian();
-        assertEquals(0, c.getX(), 1);
-        assertEquals(-SphericCoordinate.EARTH_RADIUS_KM, c.getY(), 1);
-        assertEquals(0, c.getZ(), 1);
+        assertEquals(0, a.asCartesianX(), 1);
+        assertEquals(-SphericCoordinate.EARTH_RADIUS_KM, a.asCartesianY(), 1);
+        assertEquals(0, a.asCartesianZ(), 1);
     }
 
     @Test
     public void testToCartesianEast() {
         SphericCoordinate a = new SphericCoordinate(0, 90, SphericCoordinate.EARTH_RADIUS_KM);
 
-        CartesianCoordinate c = a.toCartesian();
-        assertEquals(0, c.getX(), 1);
-        assertEquals(SphericCoordinate.EARTH_RADIUS_KM, c.getY(), 1);
-        assertEquals(0, c.getZ(), 1);
+        assertEquals(0, a.asCartesianX(), 1);
+        assertEquals(SphericCoordinate.EARTH_RADIUS_KM, a.asCartesianY(), 1);
+        assertEquals(0, a.asCartesianZ(), 1);
     }
 
     @Test
     public void testToCartesianFront() {
         SphericCoordinate a = new SphericCoordinate(0, 0, SphericCoordinate.EARTH_RADIUS_KM);
 
-        CartesianCoordinate c = a.toCartesian();
-        assertEquals(SphericCoordinate.EARTH_RADIUS_KM, c.getX(), 1);
-        assertEquals(0, c.getY(), 1);
-        assertEquals(0, c.getZ(), 1);
+        assertEquals(SphericCoordinate.EARTH_RADIUS_KM, a.asCartesianX(), 1);
+        assertEquals(0, a.asCartesianY(), 1);
+        assertEquals(0, a.asCartesianZ(), 1);
     }
 
     @Test
     public void testToCartesianBack() {
         SphericCoordinate a = new SphericCoordinate(0, 180, SphericCoordinate.EARTH_RADIUS_KM);
 
-        CartesianCoordinate c = a.toCartesian();
-        assertEquals(-SphericCoordinate.EARTH_RADIUS_KM, c.getX(), 1);
-        assertEquals(0, c.getY(), 1);
-        assertEquals(0, c.getZ(), 1);
+        assertEquals(-SphericCoordinate.EARTH_RADIUS_KM, a.asCartesianX(), 1);
+        assertEquals(0, a.asCartesianY(), 1);
+        assertEquals(0, a.asCartesianZ(), 1);
     }
 
     @Test
@@ -177,5 +171,10 @@ public class SphericCoordinateTest {
         SphericCoordinate b = new SphericCoordinate(377, -13, SphericCoordinate.EARTH_RADIUS_KM);
 
         assertFalse(a.isEqual(b));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNegativeRadius() throws Exception {
+        new SphericCoordinate(1, 2, -1);
     }
 }

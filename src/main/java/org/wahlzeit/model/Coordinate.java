@@ -9,5 +9,7 @@ public interface Coordinate {
 
     boolean isEqual(Coordinate other);
 
-    CartesianCoordinate toCartesian();
+    double asCartesianX();
+    double asCartesianY();
+    double asCartesianZ();
 }

@@ -17,11 +17,6 @@ public class CartesianCoordinate extends AbstractCoordinate {
         this.z = z;
     }
 
-    @Override
-    public CartesianCoordinate toCartesian() {
-        return this;
-    }
-
     public double getX() {
         return x;
     }
@@ -32,6 +27,18 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
     public double getZ() {
         return z;
+    }
+
+    public double asCartesianX() {
+        return getX();
+    }
+
+    public double asCartesianY() {
+        return getY();
+    }
+
+    public double asCartesianZ() {
+        return getZ();
     }
 
     @Override

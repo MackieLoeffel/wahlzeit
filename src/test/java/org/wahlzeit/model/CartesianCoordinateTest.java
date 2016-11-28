@@ -19,10 +19,9 @@ public class CartesianCoordinateTest {
 	public void testToCartesian() {
 		CartesianCoordinate coordinate = new CartesianCoordinate(1, 2, 3);
 
-		CartesianCoordinate cartesian = coordinate.toCartesian();
-		assertEquals(1, cartesian.getX(), 0);
-		assertEquals(2, cartesian.getY(), 0);
-		assertEquals(3, cartesian.getZ(), 0);
+		assertEquals(1, coordinate.asCartesianX(), 0);
+		assertEquals(2, coordinate.asCartesianY(), 0);
+		assertEquals(3, coordinate.asCartesianZ(), 0);
 	}
 
 	@Test

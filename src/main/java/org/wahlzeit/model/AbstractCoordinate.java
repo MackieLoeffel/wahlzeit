@@ -10,11 +10,9 @@ public abstract class AbstractCoordinate implements Coordinate {
 
     @Override
     public double getDistance(Coordinate other) {
-        CartesianCoordinate cartesianThis = toCartesian();
-        CartesianCoordinate cartesianOther = other.toCartesian();
-        double dx = cartesianThis.getX() - cartesianOther.getX();
-        double dy = cartesianThis.getY() - cartesianOther.getY();
-        double dz = cartesianThis.getZ() - cartesianOther.getZ();
+        double dx = asCartesianX() - other.asCartesianX();
+        double dy = asCartesianY() - other.asCartesianY();
+        double dz = asCartesianZ() - other.asCartesianZ();
         return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
 }
