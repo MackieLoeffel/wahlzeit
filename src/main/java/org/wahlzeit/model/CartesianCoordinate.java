@@ -1,5 +1,7 @@
 package org.wahlzeit.model;
 
+import static org.wahlzeit.utils.AssertUtil.assertArgumentValidDouble;
+
 public class CartesianCoordinate extends AbstractCoordinate {
     private double x;
     private double y;
@@ -12,6 +14,9 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @param z in km
      */
     public CartesianCoordinate(double x, double y, double z) {
+        assertArgumentValidDouble("x", x);
+        assertArgumentValidDouble("y", y);
+        assertArgumentValidDouble("z", z);
         this.x = x;
         this.y = y;
         this.z = z;

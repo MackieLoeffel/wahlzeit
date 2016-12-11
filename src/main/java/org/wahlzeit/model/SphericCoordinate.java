@@ -1,5 +1,7 @@
 package org.wahlzeit.model;
 
+import static org.wahlzeit.utils.AssertUtil.assertArgumentValidDouble;
+
 public class SphericCoordinate extends AbstractCoordinate {
     public static final double EARTH_RADIUS_KM = 6371;
 
@@ -14,6 +16,8 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @param radius in km
      */
     public SphericCoordinate(double latitude, double longitude, double radius) {
+        assertArgumentValidDouble("latitude", latitude);
+        assertArgumentValidDouble("longitude", longitude);
         checkRadius(radius);
         this.latitude = latitude;
         this.longitude = longitude;
