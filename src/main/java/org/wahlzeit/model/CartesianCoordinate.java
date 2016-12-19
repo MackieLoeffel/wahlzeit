@@ -4,6 +4,13 @@ import java.util.HashMap;
 
 import static org.wahlzeit.utils.AssertUtil.assertArgumentValidDouble;
 
+/**
+ *	@PatternInstance:
+ *   patternName = “ValueObject”
+ *   participants = {
+ *	   “ValueObject”
+ *   }
+ */
 public class CartesianCoordinate extends AbstractCoordinate {
     private final double x;
     private final double y;
@@ -53,14 +60,35 @@ public class CartesianCoordinate extends AbstractCoordinate {
         return z;
     }
 
+    /**
+     *	@PatternInstance:
+     *   patternName = “TemplateMethod”
+     *   participants = {
+     *	   “TemplateMethod”, “Step”
+     *   }
+     */
     public double asCartesianX() {
         return getX();
     }
 
+    /**
+     *	@PatternInstance:
+     *   patternName = “TemplateMethod”
+     *   participants = {
+     *	   “TemplateMethod”, “Step”
+     *   }
+     */
     public double asCartesianY() {
         return getY();
     }
 
+    /**
+     *	@PatternInstance:
+     *   patternName = “TemplateMethod”
+     *   participants = {
+     *	   “TemplateMethod”, “Step”
+     *   }
+     */
     public double asCartesianZ() {
         return getZ();
     }

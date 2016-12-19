@@ -22,6 +22,12 @@ package org.wahlzeit.model;
 
 /**
  * An Abstract Factory for creating photos and related objects.
+ *	@PatternInstance:
+ *   patternName = “Abstract Factory”
+ *   participants = {
+ *	   “AbstractFactory”, “ConcreteFactory”,
+ *	   "AbstractProduct", "ConcreteProduct"
+ *   }
  */
 public abstract class PhotoFactory {
 
@@ -29,7 +35,7 @@ public abstract class PhotoFactory {
 
 	/**
 	 * Creates a new photo with the specified id
-	 */
+	*/
 	public abstract Photo createPhoto(PhotoId id);
 
 	/**

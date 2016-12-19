@@ -4,6 +4,13 @@ import java.util.HashMap;
 
 import static org.wahlzeit.utils.AssertUtil.assertArgumentValidDouble;
 
+/**
+ *	@PatternInstance:
+ *   patternName = “ValueObject”
+ *   participants = {
+ *	   “ValueObject”
+ *   }
+ */
 public class SphericCoordinate extends AbstractCoordinate {
     public static final double EARTH_RADIUS_KM = 6371;
 
@@ -69,14 +76,35 @@ public class SphericCoordinate extends AbstractCoordinate {
         return degree;
     }
 
+    /**
+     *	@PatternInstance:
+     *   patternName = “TemplateMethod”
+     *   participants = {
+     *	   “TemplateMethod”, “Step”
+     *   }
+     */
     public double asCartesianX() {
         return radius * Math.cos(getLatitudeRadians()) * Math.cos(getLongitudeRadians());
     }
 
+    /**
+     *	@PatternInstance:
+     *   patternName = “TemplateMethod”
+     *   participants = {
+     *	   “TemplateMethod”, “Step”
+     *   }
+     */
     public double asCartesianY() {
         return radius * Math.cos(getLatitudeRadians()) * Math.sin(getLongitudeRadians());
     }
 
+    /**
+     *	@PatternInstance:
+     *   patternName = “TemplateMethod”
+     *   participants = {
+     *	   “TemplateMethod”, “Step”
+     *   }
+     */
     public double asCartesianZ() {
         return radius * Math.sin(getLatitudeRadians());
     }

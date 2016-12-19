@@ -11,6 +11,13 @@ public abstract class AbstractCoordinate implements Coordinate {
         return Math.abs(getDistance(other)) < EPSILON;
     }
 
+    /**
+     *	@PatternInstance:
+     *   patternName = “TemplateMethod”
+     *   participants = {
+     *	   “TemplateMethod”, “Step”
+     *   }
+     */
     @Override
     public double getDistance(Coordinate other) {
         assertArgumentNotNull("other", other);
