@@ -20,6 +20,7 @@
 
 package org.wahlzeit.main;
 
+import org.wahlzeit.model.ArchitectureManager;
 import org.wahlzeit.model.ArchitecturePhotoManager;
 import org.wahlzeit.model.GlobalsManager;
 import org.wahlzeit.model.PhotoCaseManager;
@@ -57,6 +58,9 @@ public abstract class ModelMain extends AbstractMain {
 
 		log.config(LogBuilder.createSystemMessage().addAction("load user").toString());
 		UserManager.getInstance().init();
+
+		log.config(LogBuilder.createSystemMessage().addAction("load Architectures").toString());
+		ArchitectureManager.getInstance().init();
 
 		log.config(LogBuilder.createSystemMessage().addAction("load Photos").toString());
 		ArchitecturePhotoManager.getInstance().init();
