@@ -19,6 +19,9 @@ public class ArchitecturePhotoFactory extends PhotoFactory {
     @Override
     public Photo createPhoto(PhotoId id) {
         assertArgumentNotNull("id", id);
+        // here we select, which Photo class corresponds to the factory
+        // the instantiation of ArchitecturePhoto is in-code, because we
+        // simply call new
         return new ArchitecturePhoto(id);
     }
 }

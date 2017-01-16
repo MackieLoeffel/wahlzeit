@@ -30,7 +30,14 @@ import org.wahlzeit.services.Persistent;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
 
 /**
@@ -319,7 +326,7 @@ public abstract class PhotoManager<T extends Photo> extends ObjectManager {
 	 */
 	public Photo createPhoto(String filename, Image uploadedImage) throws Exception {
 		PhotoId id = PhotoId.getNextId();
-		Photo result = PhotoUtil.createPhoto(filename, id, uploadedImage);
+		Photo result = PhotoUtil.createPhoto(filename, id, uploadedImage, photoFactory);
 		addPhoto(result);
 		return result;
 	}
