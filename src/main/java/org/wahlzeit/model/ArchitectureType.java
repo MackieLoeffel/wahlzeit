@@ -11,7 +11,7 @@ import org.wahlzeit.utils.AssertUtil;
  * multiple times (the Architecture objects)
  */
 @Entity
-public class ArchitectureType extends DataObject {
+public class ArchitectureType extends DataObject /* binds TypeHierarchy.Type */ {
     @Id private String name;
     private String architectName;
     private Ref<ArchitectureType> supertype;

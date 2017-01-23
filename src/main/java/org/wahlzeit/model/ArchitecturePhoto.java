@@ -15,7 +15,7 @@ import static org.wahlzeit.utils.AssertUtil.assertArgumentNotNull;
  */
 @Subclass(index = true)
 @Entity
-public class ArchitecturePhoto extends Photo {
+public class ArchitecturePhoto extends Photo /* binds DomainInformation.Client */ {
 
     private Architecture architecture;
 

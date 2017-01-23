@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
-public class ArchitectureManager extends ObjectManager {
+public class ArchitectureManager extends ObjectManager /* binds CreationManager.Manager */ {
     private static final Logger log = Logger.getLogger(ArchitectureManager.class.getName());
 
     public static final ArchitectureManager instance = new ArchitectureManager();

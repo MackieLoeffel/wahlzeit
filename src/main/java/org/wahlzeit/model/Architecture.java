@@ -6,7 +6,7 @@ import org.wahlzeit.services.DataObject;
 import org.wahlzeit.utils.AssertUtil;
 
 @Entity
-public class Architecture extends DataObject {
+public class Architecture extends DataObject /* binds CreationManager.Object, TypeHierarchy.Object, DomainInformation.Domain */ {
     private Coordinate location;
     private ArchitectureType type;
 
